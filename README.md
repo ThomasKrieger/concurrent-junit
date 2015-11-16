@@ -12,4 +12,7 @@ See [WrongAtomicityStack](https://github.com/ThomasKrieger/concurrent-junit/blob
 concurrent-junit is released under the [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
 
 #Download
+* [jar](https://github.com/ThomasKrieger/concurrent-junit/blob/master/concurrent-junit/dist/concurrent-junit-0.0.1-SNAPSHOT.jar?raw=true) 
+* [sources](https://github.com/ThomasKrieger/concurrent-junit/blob/master/concurrent-junit/dist/concurrent-junit-0.0.1-SNAPSHOT-sources.jar?raw=true) 
+* [javadoc](https://github.com/ThomasKrieger/concurrent-junit/blob/master/concurrent-junit/dist/concurrent-junit-0.0.1-SNAPSHOT-javadoc.jar?raw=true) 
 
