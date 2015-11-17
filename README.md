@@ -8,6 +8,9 @@ A http://junit.org test runner to run concurrent unit tests.  Runs the tests of 
 
 See [WrongAtomicityStack](https://github.com/ThomasKrieger/concurrent-junit/blob/master/concurrent-junit/src/main/java/com/anarsoft/vmlens/concurrent/example/WrongAtomicityStack.java) for an example on how to use org.junit.Before. See  [RaceConditionVolatileCounter](https://github.com/ThomasKrieger/concurrent-junit/blob/master/concurrent-junit/src/main/java/com/anarsoft/vmlens/concurrent/example/RaceConditionVolatileCounter.java) for an example on how to use org.junit.After. Most useful when using a dynamic race condition catcher like http://vmlens.com.
 
+#Supported junit versions
+concurrent-junit is tested with junit 4.11 and 4.12
+
 #Download
 * [jar](https://github.com/ThomasKrieger/concurrent-junit/blob/master/concurrent-junit/dist/concurrent-junit-0.0.1-SNAPSHOT.jar?raw=true) 
 * [sources](https://github.com/ThomasKrieger/concurrent-junit/blob/master/concurrent-junit/dist/concurrent-junit-0.0.1-SNAPSHOT-sources.jar?raw=true) 
