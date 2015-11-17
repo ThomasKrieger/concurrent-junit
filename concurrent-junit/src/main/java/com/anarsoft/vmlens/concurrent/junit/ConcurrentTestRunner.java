@@ -1,8 +1,14 @@
 package com.anarsoft.vmlens.concurrent.junit;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
+
+
+
+
 
 
 
@@ -96,7 +102,7 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 for (FrameworkMethod method : getChildren()) 
 		 {
 			 Description description = describeChild(method);
-		        if (isIgnored(method)) {
+		        if (callIsIgnoredWithReflection(method)) {
 		            notifier.fireTestIgnored(description);
 		        } else {
 		            	        	
@@ -168,6 +174,36 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		
 		
 	    }
+	 
+	 
+	 private boolean callIsIgnoredWithReflection(FrameworkMethod method)
+	 {
+		Method m;
+		try {
+			m = BlockJUnit4ClassRunner.class.getDeclaredMethod("isIgnored", FrameworkMethod.class);
+		} catch (NoSuchMethodException e) {
+		       return false;
+		} catch (SecurityException e) {
+			return false;
+		}
+		
+		try {
+			return ((Boolean) m.invoke(this, method)).booleanValue();
+		} catch (IllegalAccessException e) {
+		
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+		
+			e.printStackTrace();
+		}
+		
+		 return false;
+		
+		
+	 }
 	
 	 
 	 private void evaluateStatement(Statement statement ,List<EachTestNotifier>  eachTestNotifierList )
