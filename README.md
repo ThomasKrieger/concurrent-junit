@@ -20,5 +20,9 @@ concurrent-junit is tested with junit 4.11 and 4.12
 #License
 concurrent-junit is released under the [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
 
+#Blog Entries about concurrent junit
+ * [A new way to junit test your multithreaded java code](http://vmlens.com/articles/a-new-way-to-junit-test-your-multithreaded-java-code/) 18/11/2015
+
+
 
 
