@@ -2,17 +2,42 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.anarsoft.vmlens</groupId>
+	<groupId>com.vmlens</groupId>
 	<artifactId>concurrent-junit</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>concurrent-junit</name>
-	<url>http://maven.apache.org</url>
+	<description>A http://junit.org test runner to run concurrent unit tests.</description>
+    <url>https://github.com/ThomasKrieger/concurrent-junit</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
+    <licenses>
+      <license>
+          <name>Eclipse Public License - v 1.0</name>
+          <url>http://www.eclipse.org/legal/epl-v10.html</url>
+      </license>
+   </licenses>
+   
+    <developers>
+       <developer>
+         <name>Thomas Krieger</name>
+         <email>thomas.krieger@vmlens.com</email>
+         <organization>vmlens</organization>
+         <organizationUrl>http://www.vmlens.com</organizationUrl>
+      </developer>
+    </developers>
+    
+    <scm>
+         <connection>scm:git:git@github.com:ThomasKrieger/concurrent-junit.git</connection>
+         <developerConnection>scm:git:git@github.com:ThomasKrieger/concurrent-junit.git</developerConnection>
+         <url>git@github.com:ThomasKrieger/concurrent-junit.git</url>
+    </scm>
+	
+	
 	
  <build>		
  <plugins>
@@ -39,8 +64,8 @@
           </goals>
         </execution>
       </executions>
-    </plugin>
- </plugins>
+    </plugin> 
+    </plugins>
  </build>
 
 	<dependencies>

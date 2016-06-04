@@ -112,10 +112,26 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		   	        
 		   	        Statement st = createMethodStatement(  method,  test);
 		        	
-		   	     concurrentStatementList.add(new ConcurrentStatement(st,eachNotifier));
-		   	     concurrentStatementList.add(new ConcurrentStatement(st,eachNotifier)); 
-		   	     concurrentStatementList.add(new ConcurrentStatement(st,eachNotifier)); 
-		       	 concurrentStatementList.add(new ConcurrentStatement(st,eachNotifier)); 
+		   	    
+		   	     ThreadCount threadCountAnnotation =   method.getAnnotation(ThreadCount.class);
+		   	        
+		   	     int  threadCount = 4;
+		   	     
+		   	     if( threadCountAnnotation != null )
+		   	     {
+		   	    	threadCount = threadCountAnnotation.value();
+		   	     }
+		   	     
+		   	     
+		   	     for( int i = 0 ; i < threadCount ; i++ )
+		   	     {
+		   	    	 concurrentStatementList.add(new ConcurrentStatement(st,eachNotifier));
+		   	     }
+		   	    	 
+		   	    	 
+		   	     
+		   	    
+		   	   
 		       
 		   	        
 		        }
@@ -132,9 +148,15 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 List<ParallelExecutorThread>  threadList = new LinkedList<ParallelExecutorThread>();
 		 
 		 
+		
+		 
 		 for( ConcurrentStatement st : concurrentStatementList  )
 		 {
 			 ParallelExecutorThread t = new ParallelExecutorThread(st);
+		
+			 
+			
+			 
 			 threadList.add(t);
 			 t.start();
 		 }
