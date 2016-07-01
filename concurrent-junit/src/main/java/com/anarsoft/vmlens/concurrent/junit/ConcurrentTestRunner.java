@@ -34,6 +34,7 @@ import com.anarsoft.vmlens.concurrent.junit.internal.ParallelExecutorThread;
 import com.anarsoft.vmlens.concurrent.junit.internal.TestResult;
 
 
+
 /**
  * <p>A <a href="junit.org">JUnit</a> test runner to run concurrent unit tests.  Runs the tests of one test class in the following order:
  * </p>
@@ -98,6 +99,8 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 	        	 return;
 	        }
 		
+	        
+	   
 		
 		 for (FrameworkMethod method : getChildren()) 
 		 {
@@ -147,7 +150,6 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 
 		 List<ParallelExecutorThread>  threadList = new LinkedList<ParallelExecutorThread>();
 		 
-		 
 		
 		 
 		 for( ConcurrentStatement st : concurrentStatementList  )
@@ -162,10 +164,7 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 }
 		 
 		 
-		 for(  ParallelExecutorThread t : threadList )
-		 {
-			 t.execute = true;
-		 }
+		
 		 
 		 
 		 for(  ParallelExecutorThread t : threadList )

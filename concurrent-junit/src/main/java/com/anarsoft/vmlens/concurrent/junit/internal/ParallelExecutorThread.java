@@ -5,11 +5,11 @@ package com.anarsoft.vmlens.concurrent.junit.internal;
 public class ParallelExecutorThread extends Thread {
 
 	private final ConcurrentStatement concurrentStatement;
-	public volatile boolean execute = false;
+	
 	
 
 	
-	public ParallelExecutorThread(ConcurrentStatement concurrentStatement) {
+	public ParallelExecutorThread(ConcurrentStatement concurrentStatement	) {
 		super();
 		this.concurrentStatement = concurrentStatement;
 	}
@@ -21,10 +21,6 @@ public class ParallelExecutorThread extends Thread {
 	public void run() {
 		
 		try{
-		while( ! execute )
-		{
-			Thread.sleep(1);
-		}
 		
 		concurrentStatement.evaluate();
 		
@@ -33,6 +29,7 @@ public class ParallelExecutorThread extends Thread {
 		{
 			throw new RuntimeException(e);
 		}
+	
 		
 	}
 	
