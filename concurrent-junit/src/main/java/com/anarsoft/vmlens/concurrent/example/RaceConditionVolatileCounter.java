@@ -1,6 +1,8 @@
 package com.anarsoft.vmlens.concurrent.example;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +38,7 @@ public class RaceConditionVolatileCounter {
 	@After
 	public void assertCount()
 	{
-		assertEquals("4 Threads running addOne in parallel should lead to 4" , 4 , i);
+		assertTrue("When run with a waitpoint it should be smaller than 4" ,   i < 4);
 	}
 
 }

@@ -11,6 +11,7 @@ public class ParallelExecutorThread extends Thread {
 	
 	public ParallelExecutorThread(ConcurrentStatement concurrentStatement	) {
 		super();
+		this.setDaemon(true);
 		this.concurrentStatement = concurrentStatement;
 	}
 

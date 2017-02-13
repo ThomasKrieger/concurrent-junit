@@ -152,6 +152,7 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 
 		
 		 
+		 
 		 for( ConcurrentStatement st : concurrentStatementList  )
 		 {
 			 ParallelExecutorThread t = new ParallelExecutorThread(st);
@@ -163,15 +164,23 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 			 t.start();
 		 }
 		 
-		 
 		
 		 
+		 
+		
+		  int stillRunningThreads = 0;
 		 
 		 for(  ParallelExecutorThread t : threadList )
 		 {
 			 try
 			 {
-				 t.join();
+				 t.join(5 * 1000);
+				 
+				 if( t.isAlive() )
+				 {
+					 stillRunningThreads++; 
+				 }
+				 
 			 }
 			 catch( Exception e)
 			 {
@@ -179,6 +188,12 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 			 }
 			
 		 }
+		 
+		 if(stillRunningThreads > 0)
+		 {
+			 System.err.println("still running threads: "+ stillRunningThreads );
+		 }
+		 
 		 
 		 
 		 for( ConcurrentStatement st : concurrentStatementList  )
