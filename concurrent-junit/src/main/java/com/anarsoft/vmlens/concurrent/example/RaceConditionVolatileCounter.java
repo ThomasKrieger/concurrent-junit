@@ -15,7 +15,8 @@ import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
  * 
  * Shows how to use org.junit.After annotation to check for the result of a computation. 
  * The assertion will fail when run with <a href="http://vmlens.com">vmlens.com</a> with
- * "delay synchronization for unit tests" enabled.
+ * a waitpoint at com.anarsoft.vmlens.concurrent.example.RaceConditionVolatileCounter.i in
+ * the method addOne, the variable i will be smaller than 4.
  * 
  * 
  * 

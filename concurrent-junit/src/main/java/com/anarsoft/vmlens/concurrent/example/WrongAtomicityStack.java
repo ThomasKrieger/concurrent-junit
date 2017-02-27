@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +16,8 @@ import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 /**
  * 
  * Shows how to use org.junit.Before annotation to create the pre-conditions of a concurrent tests. {@link #setup} will be only called once, {@link #removeOne} 4 times in parallel.
- * When you run this test with <a href="http://vmlens.com">vmlens.com</a> with "delay synchronization for unit tests" enabled,  {@link #removeOne} will 
- * throw a java.util.EmptyStackException.
+ * When you run this test with <a href="http://vmlens.com">vmlens.com</a> with a waitpoint set at the field java.util.Vector.elementCount in the method removeOne
+ * ,  {@link #removeOne} will throw a java.util.EmptyStackException.
  * 
  * 
  * 
@@ -51,7 +52,7 @@ public class WrongAtomicityStack {
 		}
 	}
 	
-	
+	@After
 	public void checkExceptionThrown()
 	{
 		assertTrue("When a waitpoint is set an EmptyStackException should be thrown" ,emptyStackExceptionThrown);
