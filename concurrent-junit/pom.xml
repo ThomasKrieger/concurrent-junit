@@ -64,6 +64,13 @@
           </goals>
         </execution>
       </executions>
+      
+                    <configuration>
+  
+          <excludePackageNames>*.internal.*</excludePackageNames>
+    
+        </configuration>
+      
     </plugin> 
     </plugins>
  </build>
