@@ -1,10 +1,8 @@
 package com.anarsoft.vmlens.concurrent.example;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.TypeVariable;
 
-import org.junit.Assert;
-import org.junit.Before;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -24,28 +22,16 @@ import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 public class RaceConditionInJavaReflection {
 
 	
-
-	private TypeVariable typeVariable;
-	
-	
-	
-	@Before
-	public void setUp() throws NoSuchMethodException, SecurityException
+	@Test
+	public void testGetBounds()
 	{
 		Class cl = GenericInterface.class;
+		TypeVariable typeVariable  = cl.getTypeParameters()[0];
 		
-
-		typeVariable  = cl.getTypeParameters()[0];
-		
-		
-	
-	}
-	
-	
-	@Test
-	public void test()
-	{
-		Assert.assertTrue( typeVariable.getBounds()[0] instanceof  ParameterizedType );
+		for(  Type bound :  typeVariable.getBounds() )
+		{
+	       // Do something		
+		}
 	
 	}
 }

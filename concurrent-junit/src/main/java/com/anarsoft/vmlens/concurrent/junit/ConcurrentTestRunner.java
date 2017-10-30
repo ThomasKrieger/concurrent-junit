@@ -44,9 +44,8 @@ import com.anarsoft.vmlens.concurrent.junit.internal.TestResult;
  *    <li> Runs methods marked with org.junit.After annotation in the main thread.  </li>
  * </ol>
  * <p>
- * See {@link com.anarsoft.vmlens.concurrent.example.WrongAtomicityStack} for an example on how to use org.junit.Before.
 
- * See {@link com.anarsoft.vmlens.concurrent.example.RaceConditionVolatileCounter} for an example on how to use org.junit.After.
+
  * Most useful when using a dynamic race condition catcher like <a href="vmlens.com">vmlens</a>.</p>
  * 
  * 
@@ -64,6 +63,8 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 	
 	
 	
+	private boolean alreadyRun = false;
+	
 	
 	
 	 protected Statement childrenInvoker(final RunNotifier notifier) {
@@ -78,6 +79,14 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 	 
 	 private void runChildrenConcurrently(final RunNotifier notifier) {
 	      
+		 if(alreadyRun)
+		 {
+			 return;
+		 }
+		 
+		 
+		 alreadyRun = true;
+		 
 		List<EachTestNotifier>  eachTestNotifierList = new LinkedList<EachTestNotifier>();
 		List<ConcurrentStatement>  concurrentStatementList = new LinkedList<ConcurrentStatement>();
 	    
@@ -126,6 +135,7 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		   	     }
 		   	     
 		   	     
+		   	     
 		   	     for( int i = 0 ; i < threadCount ; i++ )
 		   	     {
 		   	    	 concurrentStatementList.add(new ConcurrentStatement(st,eachNotifier));
@@ -156,8 +166,6 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 for( ConcurrentStatement st : concurrentStatementList  )
 		 {
 			 ParallelExecutorThread t = new ParallelExecutorThread(st);
-		
-			 
 			
 			 
 			 threadList.add(t);
@@ -166,7 +174,6 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 
 		
 		 
-		 
 		
 		  int stillRunningThreads = 0;
 		 
@@ -174,11 +181,12 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 {
 			 try
 			 {
-				 t.join(5 * 1000);
+				 t.join(30 * 5 * 1000);
 				 
 				 if( t.isAlive() )
 				 {
 					 stillRunningThreads++; 
+					 t.interrupt();
 				 }
 				 
 			 }
@@ -193,20 +201,26 @@ public class ConcurrentTestRunner   extends BlockJUnit4ClassRunner {
 		 {
 			 System.err.println("still running threads: "+ stillRunningThreads );
 		 }
-		 
-		 
-		 
-		 for( ConcurrentStatement st : concurrentStatementList  )
+		 else
 		 {
-			 st.addFailures();
+			 for( ConcurrentStatement st : concurrentStatementList  )
+			 {
+				 st.addFailures();
+			 }
+			 
+			 
+			 
+			 Statement after = createAfters( test);
+			
+			 evaluateStatement(after , eachTestNotifierList );
 		 }
 		 
 		 
-		 
-		 Statement after = createAfters( test);
-		
-		 evaluateStatement(after , eachTestNotifierList );
-		
+	
+		 for( EachTestNotifier eachTestNotifier : eachTestNotifierList ) 
+		 { 
+			 eachTestNotifier.fireTestFinished(); 
+	     }
 		
 		
 	    }

@@ -4,7 +4,7 @@
 
 	<groupId>com.vmlens</groupId>
 	<artifactId>concurrent-junit</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>concurrent-junit</name>
@@ -88,5 +88,14 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		 
+  <dependency>
+    <groupId>org.reflections</groupId>
+    <artifactId>reflections</artifactId>
+    <version>0.9.11</version>
+</dependency>
+		
+		
+		
 	</dependencies>
 </project>

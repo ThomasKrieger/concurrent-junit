@@ -50,6 +50,10 @@ public class WrongAtomicityStack {
 		{
 			emptyStackExceptionThrown = true;
 		}
+		catch(ArrayIndexOutOfBoundsException exception)
+		{
+			emptyStackExceptionThrown = true;
+		}
 	}
 	
 	@After
