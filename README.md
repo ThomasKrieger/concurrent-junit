@@ -25,7 +25,7 @@ concurrent-junit is tested with junit 4.11 and 4.12
 <dependency>
 <groupId>com.vmlens</groupId>
 <artifactId>concurrent-junit</artifactId>
-<version>1.0.0</version>
+<version>1.0.2</version>
 </dependency>
 ```
 
